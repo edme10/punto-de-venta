@@ -1,0 +1,60 @@
+/* Estilos del módulo: corte-configuracion */
+
+/* ------------------------------------------------------------ Corte */
+.corte-vacio { text-align: center; padding: 60px 20px; color: var(--gris); font-size: 15px; }
+.corte-encabezado { margin-bottom: 12px; }
+.corte-titulo { font-size: 20px; font-weight: 600; color: var(--azul-oscuro); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.corte-titulo a, .corte-encabezado a { color: var(--azul); text-decoration: underline dotted; }
+.corte-encabezado .nota a { margin-right: 4px; }
+.kpi .val.verde { color: var(--verde); }
+.lista-montos tr.cancelado td { text-decoration: line-through; color: var(--gris); }
+.lista-montos .nota { margin: 0; font-size: 11px; }
+.cierre-esperado { font-size: 24px; font-weight: 700; color: var(--azul-oscuro); }
+.cierre-contado { width: 200px !important; }
+.cierre-diferencia { font-size: 18px; font-weight: 700; }
+.cierre-diferencia.ok { color: var(--verde); }
+.cierre-diferencia.faltante { color: var(--rojo); }
+.cierre-diferencia.sobrante { color: var(--naranja); }
+
+/* ------------------------------------------------------------ Configuración */
+.cfg-subtitulo { font-size: 15px; font-weight: 500; text-transform: none; }
+.cfg-grupo { margin-bottom: 18px; }
+.cfg-grupo h3 { margin: 0 0 8px; font-size: 14px; color: var(--gris); text-transform: uppercase; letter-spacing: .03em; }
+.cfg-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.cfg-tile {
+  font: inherit; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 10px;
+  background: var(--panel); border: 1px solid var(--borde); border-radius: var(--radio); cursor: pointer; text-align: center;
+}
+.cfg-tile:hover { border-color: var(--azul); background: var(--azul-claro); }
+.cfg-icono { font-size: 30px; line-height: 1; }
+.cfg-panel { max-width: 900px; }
+.cfg-panel .form-grid { grid-template-columns: 260px 1fr; }
+.cfg-panel .form-grid > div { min-width: 0; }
+.cfg-panel textarea { width: 100%; max-width: 480px; font-family: 'Courier New', monospace; }
+.cfg-panel input:not([type=checkbox]):not(.corto), .cfg-panel select { min-width: 260px; max-width: 480px; }
+.cfg-panel input.corto { width: 120px; }
+.cfg-panel .form-grid .nota { margin: 2px 0 0; }
+.cfg-span { grid-column: 1 / -1; margin: 10px 0 0; }
+h3.cfg-span { border-bottom: 1px solid var(--borde); padding-bottom: 4px; }
+.cfg-imagen { border: 1px dashed var(--borde); border-radius: var(--radio); padding: 10px; min-height: 60px; display: flex; align-items: center; justify-content: center; background: #fafbfc; }
+.cfg-imagen img { max-width: 100%; max-height: 120px; }
+label.btn { display: inline-block; }
+
+.cfg-cajeros { grid-template-columns: 380px 1fr; }
+.cfg-pestanas { display: flex; gap: 2px; border-bottom: 1px solid var(--borde); margin-bottom: 8px; flex-wrap: wrap; }
+.cfg-pestana { font: inherit; padding: 6px 12px; border: 1px solid var(--borde); border-bottom: 0; border-radius: 6px 6px 0 0; background: #eef2f7; cursor: pointer; }
+.cfg-pestana.activo { background: #fff; color: var(--azul-oscuro); font-weight: 600; }
+.cfg-permisos { display: flex; flex-direction: column; gap: 2px; padding: 4px 2px; }
+.cfg-permisos label.check { margin-top: 4px; }
+
+.cfg-ticket { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 14px; align-items: start; }
+.cfg-ticket .cfg-panel + .cfg-panel { margin-top: 12px; }
+.cfg-vista { position: sticky; top: 0; }
+.cfg-vista iframe { width: 100%; height: 520px; border: 1px solid var(--borde); background: #fff; }
+.cfg-listas { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+.cfg-listas select { min-width: 190px !important; height: 170px; }
+.cfg-flechas { display: flex; flex-direction: column; gap: 6px; }
+
+.cfg-unidades { display: flex; flex-wrap: wrap; gap: 6px; }
+.cfg-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 4px 2px 10px; background: var(--azul-claro); border-radius: 14px; }
+.cfg-ruta { background: #f1f3f6; padding: 3px 6px; border-radius: 4px; word-break: break-all; }

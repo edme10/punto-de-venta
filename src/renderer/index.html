@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'">
+  <title>Punto de Venta</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/productos.css">
+  <link rel="stylesheet" href="css/inventario-compras.css">
+  <link rel="stylesheet" href="css/clientes-creditos-reportes.css">
+  <link rel="stylesheet" href="css/corte-configuracion.css">
+</head>
+<body>
+  <div id="app">
+    <header id="encabezado" hidden>
+      <div class="marca">
+        <img id="logo-programa" alt="" hidden>
+        <span id="nombre-negocio"></span>
+      </div>
+      <div class="le-atiende">Le atiende: <b id="nombre-cajero"></b></div>
+    </header>
+    <nav id="navegacion" hidden></nav>
+    <main id="contenido"></main>
+    <footer id="barra-estado" hidden>
+      <span id="estado-caja"></span>
+      <span id="estado-turno"></span>
+      <span class="espaciador"></span>
+      <span id="estado-reloj"></span>
+    </footer>
+  </div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

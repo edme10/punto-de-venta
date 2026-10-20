@@ -1,0 +1,41 @@
+/* Estilos del módulo: inventario-compras */
+.modulo-inventario .sub-titulo, .modulo-compras .sub-titulo { font-size: 14px; font-weight: 500; text-transform: none; color: var(--gris); }
+.aviso-inventario { background: var(--amarillo); border-color: #e8d48a; font-size: 15px; }
+
+.inv-form { max-width: 760px; }
+.inv-form .form-grid { grid-template-columns: 170px 1fr; }
+.inv-form .form-grid .fila { flex-wrap: nowrap; }
+.inv-form .form-grid .fila input { flex: 1; }
+.inv-form input.num { max-width: 220px; }
+.inv-form [data-codigo] { font-size: 16px; }
+.inv-desc { font-size: 17px; font-weight: 600; color: var(--azul-oscuro); }
+.inv-exist { font-size: 15px; }
+.resumen-ajuste {
+  margin-top: 12px; padding: 10px 14px; background: var(--amarillo); border: 1px solid #e8d48a;
+  border-radius: var(--radio); line-height: 1.6;
+}
+
+.barra-filtros { margin-bottom: 10px; }
+.barra-filtros + .barra-filtros { margin-top: 0; }
+.inv-tabla { max-height: calc(100vh - 330px); }
+.tabla tr.bajo-minimo td { color: var(--rojo); }
+.verde-txt { color: var(--verde); }
+input.corto { width: 90px; }
+.kpi .val.chico { font-size: 16px; }
+
+/* Kardex */
+.kardex-cabecera { margin-bottom: 10px; }
+.kardex-cabecera .fila { gap: 26px; }
+.tabla.kardex th.grupo { text-align: center; border-left: 1px solid var(--borde); }
+.tabla.kardex tr.cambio-precio td { background: #f6f3ff; color: #5b4a9e; font-style: italic; }
+
+/* Compras */
+.compras-ordenes { grid-template-columns: 380px 1fr; height: calc(100vh - 210px); }
+.ordenes-lista { display: flex; flex-direction: column; min-height: 0; }
+.ordenes-lista .tabla-scroll { flex: 1; min-height: 0; }
+.orden-detalle { display: flex; flex-direction: column; gap: 8px; }
+.orden-encabezado h3 { margin: 0; display: flex; gap: 8px; align-items: center; }
+.agregar-renglon input[data-codigo] { flex: 1; min-width: 240px; }
+.orden-renglones { max-height: calc(100vh - 470px); }
+.orden-renglones input.corto { width: 100px; padding: 3px 6px; }
+.tabla tr.recibido-incompleto td { background: #fff7e6; }

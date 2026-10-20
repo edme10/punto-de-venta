@@ -1,0 +1,58 @@
+/* Estilos del módulo: productos */
+.modulo-barra .sub-titulo { font-weight: 400; text-transform: none; font-size: 15px; color: var(--gris); }
+
+/* Formulario de producto */
+.form-producto { max-width: 920px; }
+.form-producto .form-grid { grid-template-columns: 170px 1fr; }
+.form-producto input[name=descripcion] { max-width: 520px; }
+.ancho-chico { width: 150px; }
+.ancho-medio { width: 300px; }
+.radios { gap: 18px; }
+.radios .check { margin-top: 0; }
+.pestanas { display: flex; gap: 2px; border-bottom: 2px solid var(--azul); margin-bottom: 14px; }
+.pestana {
+  font: inherit; padding: 7px 16px; border: 1px solid var(--borde); border-bottom: 0;
+  border-radius: 6px 6px 0 0; background: #eef2f7; cursor: pointer;
+}
+.pestana.activo { background: var(--azul); color: #fff; border-color: var(--azul); }
+.pestana-cuerpo .check { margin: 6px 0; }
+
+/* Elegir producto / ficha */
+.elegir-producto { margin-bottom: 12px; }
+.elegir-producto label { font-size: 15px; font-weight: 600; display: block; margin-bottom: 6px; }
+.elegir-producto input.grande { width: auto; flex: 1; font-size: 18px; }
+.ficha-producto { max-width: 560px; }
+
+/* Catálogo */
+.productos-catalogo { display: flex; flex-direction: column; }
+.catalogo { display: flex; flex-direction: column; height: 100%; min-height: 0; }
+.catalogo-filtros { margin-bottom: 10px; }
+.catalogo-filtros [data-texto] { width: 320px; }
+.catalogo-tabla { flex: 1; min-height: 200px; }
+.catalogo .tabla tr.marcado { background: #fff8d6; }
+.catalogo .tabla th .flecha { font-size: 10px; color: var(--azul); }
+
+/* Ventas por período */
+.productos-ventas { display: flex; flex-direction: column; }
+.ventas-periodo-tabla { flex: 1; margin-top: 12px; min-height: 200px; }
+.total-vendido { text-align: right; font-size: 20px; margin-top: 10px; }
+.total-vendido b { color: var(--azul-oscuro); }
+
+/* Promociones */
+.promociones .form-grid { grid-template-columns: 200px 1fr; }
+
+/* Asistentes (masivo / importar) */
+.pasos-asistente { display: flex; gap: 6px; margin-bottom: 10px; }
+.pasos-asistente span { flex: 1; padding: 6px 10px; border-radius: 4px; background: #eef2f7; color: var(--gris); font-size: 13px; }
+.pasos-asistente span.activo { background: var(--azul); color: #fff; font-weight: 600; }
+.pasos-asistente span.hecho { background: var(--verde-claro); color: var(--verde); }
+.lista-acciones { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 20px; }
+.opcion-accion { padding: 6px 8px; border-radius: 4px; }
+.opcion-accion:hover { background: #f0f4fa; }
+.modal-masivo .tabla tr.omitido td { color: var(--gris); }
+.importar-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.importar-columnas .form-grid { grid-template-columns: 140px 1fr; }
+.instrucciones { line-height: 1.7; }
+.progreso { height: 18px; background: #eef2f7; border-radius: 9px; overflow: hidden; margin: 12px 0; }
+.progreso-barra { height: 100%; width: 0; background: var(--verde); transition: width .2s; }
+.lista-errores { padding: 8px; font-size: 13px; color: var(--rojo); }

@@ -1,0 +1,53 @@
+/* Estilos del módulo: clientes-creditos-reportes */
+
+/* ------------------------------------------------------------ Clientes */
+.cli-lista { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+.cli-lista > input { width: 100%; }
+.cli-items { overflow: auto; flex: 1; min-height: 0; }
+.cli-item { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: var(--radio); cursor: pointer; border-bottom: 1px solid #eef1f5; }
+.cli-item:hover { background: #f5f8fc; }
+.cli-item.sel { background: #cfe2fb; }
+.cli-item .avatar { width: 36px; height: 36px; font-size: 13px; flex-shrink: 0; }
+.cli-item .avatar.chico { width: 28px; height: 28px; font-size: 11px; }
+.cli-texto { flex: 1; min-width: 0; }
+.cli-texto > div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cli-texto .nota { margin: 0; font-size: 12px; }
+.cli-saldo { font-weight: 700; white-space: nowrap; }
+.cli-cabecera { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.cli-cabecera h3 { margin: 0; font-size: 18px; color: var(--azul-oscuro); }
+.cli-form { max-width: 720px; }
+.cli-form input:not([type=checkbox]):not([type=radio]), .cli-form textarea { width: 100%; }
+.cli-seccion { grid-column: 1 / -1; font-weight: 700; color: var(--azul-oscuro); border-bottom: 1px solid var(--borde); padding: 10px 0 4px; margin-top: 6px; }
+.cli-credito { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cli-credito label.check { margin-top: 0; }
+
+/* ------------------------------------------------------------ Créditos */
+.cred-estado { display: grid; grid-template-columns: 300px 1fr; gap: 14px; height: 100%; min-height: 0; }
+.cred-clientes { display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+.cred-clientes > input { width: 100%; }
+.cred-detalle { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+.cred-detalle > .panel + .panel { margin-top: 0; }
+.cred-cabecera { display: flex; align-items: center; gap: 14px; }
+.cred-cabecera h3 { margin: 0; font-size: 20px; }
+.cred-nombre { flex: 1; }
+.cred-saldo { text-align: right; }
+.cred-saldo .etq { font-size: 12px; color: var(--gris); text-transform: uppercase; }
+.cred-saldo .val { font-size: 34px; font-weight: 800; color: var(--azul-oscuro); line-height: 1.1; }
+.cred-saldo .val.rojo { color: var(--rojo); }
+.cred-acciones { flex-wrap: wrap; }
+.cred-cuerpo { display: grid; grid-template-columns: 1fr 330px; gap: 12px; flex: 1; min-height: 0; }
+.cred-movs { min-height: 0; max-height: 100%; }
+.cred-mov-detalle { overflow: auto; }
+.cred-mov-detalle h3 { margin: 0 0 4px; }
+.verde-txt { color: var(--verde); }
+
+/* ------------------------------------------------------------ Reportes */
+.rep-secciones { margin-top: 12px; }
+.rep-secciones .panel + .panel { margin-top: 0; }
+.rep-barra { display: grid; grid-template-columns: 160px 1fr 120px; gap: 8px; align-items: center; padding: 3px 0; }
+.rep-barra-nombre { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+.rep-barra-pista { background: #eef2f7; height: 14px; border-radius: 7px; overflow: hidden; }
+.rep-barra-pista span { display: block; height: 100%; background: var(--azul); border-radius: 7px; }
+.rep-barra-valor { text-align: right; font-weight: 600; white-space: nowrap; }
+.kpi .nota { margin: 2px 0 0; }
+.kpi .val.rojo { color: var(--rojo); }

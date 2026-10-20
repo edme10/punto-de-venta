@@ -1,0 +1,62 @@
+{
+  "name": "punto-de-venta",
+  "version": "1.0.0",
+  "description": "Punto de venta de escritorio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "dist:win": "electron-builder --win --x64"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "sql.js": "^1.13.0"
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "allowScripts": {
+    "electron@37.2.0": true,
+    "electron-winstaller@5.4.0": true
+  },
+  "productName": "Punto de Venta",
+  "build": {
+    "appId": "co.local.puntodeventa",
+    "productName": "Punto de Venta",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "node_modules/sql.js/dist/sql-wasm.js",
+      "node_modules/sql.js/dist/sql-wasm.wasm",
+      "node_modules/sql.js/package.json",
+      "node_modules/sql.js/dist/sql-wasm*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Punto de Venta"
+    }
+  }
+}
