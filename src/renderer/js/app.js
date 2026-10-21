@@ -4,7 +4,7 @@ import {
   esc, dinero, num, numInput, fmtFechaHora, ahoraISO, toast, $,
 } from './core.js';
 
-export const VERSION = '1.0.2';
+export const VERSION = '1.0.3';
 
 const MODULOS = [
   { id: 'ventas', titulo: 'Ventas', tecla: 'F1', icono: '🛒' },
@@ -47,9 +47,12 @@ export async function irA(id, ...args) {
   if (def.requiere && !cfg(def.requiere)) return;
   if (def.permiso && !exigir(def.permiso)) return;
   if (moduloActual?.instancia?.desmontar) await moduloActual.instancia.desmontar();
-  const contenido = $('#contenido');
-  contenido.innerHTML = '';
+  // Contenedor nuevo en cada montaje: así no se acumulan los listeners que
+  // los módulos registran sobre él al volver a entrar.
+  const contenido = document.createElement('main');
+  contenido.id = 'contenido';
   contenido.className = 'modulo-' + id;
+  $('#contenido').replaceWith(contenido);
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('activo', b.dataset.mod === id));
   try {
     const mod = await import(`./modulos/${id}.js`);
