@@ -4,7 +4,7 @@ import {
   esc, dinero, num, numInput, fmtFechaHora, ahoraISO, toast, $,
 } from './core.js';
 
-export const VERSION = '1.0.0';
+export const VERSION = '1.0.1';
 
 const MODULOS = [
   { id: 'ventas', titulo: 'Ventas', tecla: 'F1', icono: '🛒' },

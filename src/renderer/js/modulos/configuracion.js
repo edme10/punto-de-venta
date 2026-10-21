@@ -921,6 +921,55 @@ function secBascula(c) {
 }
 
 // ---------------------------------------------------------------- Base de datos y respaldos
+// Borra todo el historial de ventas y deja el programa como recién instalado (sin tocar catálogos).
+async function borrarVentas(ruta) {
+  if (!sesion.usuario.es_admin) return alerta('Solo el administrador puede borrar las ventas.', 'Acceso restringido');
+  const r = await formulario({
+    titulo: 'Borrar todas las ventas',
+    nota: `Se borrarán <b>todas</b> las ventas, devoluciones, cortes, turnos, entradas y salidas de efectivo, tickets pendientes
+      y los saldos de crédito. Esta acción no se puede deshacer (salvo restaurando el respaldo que se guardará antes).`,
+    campos: [
+      { nombre: 'kardex', etiqueta: 'Borrar también el historial de movimientos de inventario (kardex)', tipo: 'check', valor: false },
+      { nombre: 'confirmacion', etiqueta: 'Escribe BORRAR para confirmar' },
+      { nombre: 'clave', etiqueta: 'Contraseña del administrador', tipo: 'clave' },
+    ],
+    aceptar: 'Borrar ventas',
+    validar: async v => {
+      if (v.confirmacion.toUpperCase() !== 'BORRAR') return 'Escribe BORRAR para confirmar.';
+      if (!(await window.api.verificarClave(v.clave, sesion.usuario.clave))) return 'Contraseña incorrecta.';
+      return null;
+    },
+  });
+  if (!r) return;
+
+  const sep = ruta.includes('\\') ? '\\' : '/';
+  const carpeta = cfg('respaldo_carpeta') || ruta.slice(0, ruta.lastIndexOf(sep)) + sep + 'respaldos';
+  let respaldo;
+  try {
+    respaldo = await window.api.respaldoAutomatico(carpeta);
+  } catch (e) {
+    return alerta('No se pudo crear el respaldo previo, no se borró nada: ' + esc(e.message), 'Error');
+  }
+
+  const existe = async t => !!(await q1("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?", [t]));
+  const tablas = [
+    'credito_aplicaciones', 'movimientos_credito', 'devoluciones', 'venta_pagos', 'venta_renglones', 'ventas',
+    'movimientos_caja', 'turnos', 'tickets_pendientes',
+  ];
+  if (r.kardex) tablas.push('movimientos_inventario', 'cambios_precio');
+  const pasos = [];
+  for (const t of tablas) if (await existe(t)) pasos.push({ sql: `DELETE FROM ${t}`, params: [] });
+  pasos.push({ sql: 'UPDATE clientes SET saldo = 0', params: [] });
+  await tx(pasos);
+
+  await alerta(
+    `Listo, las ventas quedaron en cero.<br><br>Respaldo previo guardado en:<br><code>${esc(respaldo)}</code><br><br>
+     El programa se reiniciará para abrir un turno nuevo.`,
+    'Ventas borradas'
+  );
+  location.reload();
+}
+
 async function secBaseDatos(c) {
   const ruta = await window.api.rutaBD();
   const panel = document.createElement('div');
@@ -940,7 +989,15 @@ async function secBaseDatos(c) {
           <button class="btn" data-carpeta>Elegir carpeta…</button></div>
         <span></span><label class="check"><input type="checkbox" data-al-salir ${cfg('respaldo_al_salir') ? 'checked' : ''}> Realizar respaldo automático al salir del programa</label>
       </div>
-      <p class="nota">Recomendación: usa una memoria USB, un disco externo o una carpeta sincronizada en la nube (OneDrive, Google Drive).</p>`;
+      <p class="nota">Recomendación: usa una memoria USB, un disco externo o una carpeta sincronizada en la nube (OneDrive, Google Drive).</p>
+      <h3 style="margin-top:18px">Borrar ventas</h3>
+      <p class="nota">Deja en cero las ventas, devoluciones, cortes y turnos, entradas y salidas de efectivo, tickets pendientes
+        y los saldos de crédito de los clientes. Los folios vuelven a empezar en 1. <b>No</b> se borran productos, clientes,
+        proveedores, cajeros ni configuración. Antes de borrar se guarda un respaldo automático.</p>
+      <div class="botones" style="justify-content:flex-start">
+        <button class="btn btn-peligro" data-borrar-ventas>🗑 Borrar todas las ventas…</button>
+      </div>`;
+    panel.querySelector('[data-borrar-ventas]').onclick = () => borrarVentas(ruta);
     panel.querySelector('[data-respaldar]').onclick = async () => {
       const r = await window.api.crearRespaldo();
       if (r) toast('Respaldo guardado');
